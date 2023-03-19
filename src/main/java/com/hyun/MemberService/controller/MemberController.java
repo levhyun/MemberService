@@ -2,6 +2,7 @@ package com.hyun.MemberService.controller;
 
 import com.hyun.MemberService.Dto.MemberDto;
 import com.hyun.MemberService.Service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,13 +31,17 @@ public class MemberController {
 
     @GetMapping("/login") // "/login"이 요청(Get)되면 아래 함수 실행
     public String loginForm() {
-        return "Register"; // templates 폴더의 login.html을 실행
+        return "login"; // templates 폴더의 login.html을 실행
     }
 
     @PostMapping("/login") // "/login"이 요청(Post)되면 아래 함수 실행
-    public String login(@ModelAttribute MemberDto memberDTO) {
+    public String login(@ModelAttribute MemberDto memberDTO, HttpSession session) {
         MemberDto login = memberService.login(memberDTO);
         if (login != null) {
+            session.setAttribute("loginId", login.getId());
+            session.setAttribute("loginEmail", login.getEmail());
+            session.setAttribute("loginPassword", login.getPassword());
+            session.setAttribute("loginName", login.getName());
             return "main"; // templates 폴더의 main.html을 실행
         } else {
             return "login"; // templates 폴더의 login.html을 실행

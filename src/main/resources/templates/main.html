@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+</head>
+<body>
+    <div style="background: #efefef; padding: 50px; margin: 20px">
+        <h3 style="font-weight: bold;">SESSION</h3>
+        <p th:text="'Id : ' + ${session.loginId}"></p>
+        <p th:text="'Email : ' + ${session.loginEmail}"></p>
+        <p th:text="'Password : ' + ${session.loginPassword}"></p>
+        <p th:text="'Name : ' + ${session.loginName}"></p>
+    </div>
+</body>
+</html>
