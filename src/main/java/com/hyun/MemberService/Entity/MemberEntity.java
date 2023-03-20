@@ -1,6 +1,6 @@
 package com.hyun.MemberService.Entity;
 
-import com.hyun.MemberService.Dto.MemberDto;
+import com.hyun.MemberService.Dto.MemberDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +23,7 @@ public class MemberEntity { // 테이블을 정의한다.
     @Column
     private String name;
 
-    public static MemberEntity toMemberEntity(MemberDto memberDto) { // MemberDto -> MemberEntity 변환
+    public static MemberEntity toMemberEntity(MemberDTO memberDto) { // MemberDto -> MemberEntity 변환
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setId(memberDto.getId());
         memberEntity.setEmail(memberDto.getEmail());
