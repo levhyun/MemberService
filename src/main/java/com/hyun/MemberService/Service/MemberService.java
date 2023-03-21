@@ -52,4 +52,21 @@ public class MemberService {
             return null;
         }
     }
+
+    public MemberDTO getMyInformations(String email) {
+        Optional<MemberEntity> memberEntity = memberRepository.findByEmail(email);
+        if (memberEntity.isPresent()) {
+            return MemberDTO.toMemberDTO(memberEntity.get());
+        } else {
+            return null;
+        }
+    }
+
+    public void updateMemberInformations(MemberDTO memberDTO) {
+        memberRepository.save(MemberEntity.toUpdateMemberEntity(memberDTO));
+    }
+
+    public void deleteMember(Long id) {
+        memberRepository.deleteById(id);
+    }
 }

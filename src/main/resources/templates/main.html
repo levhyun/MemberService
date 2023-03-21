@@ -11,6 +11,12 @@
         <p th:text="'Email : ' + ${session.loginEmail}"></p>
         <p th:text="'Password : ' + ${session.loginPassword}"></p>
         <p th:text="'Name : ' + ${session.loginName}"></p>
+        <button>
+            <a href="/member/update" style="text-decoration-line: none;">내 정보 수정</a>
+        </button>
+        <button>
+            <a href="/" style="text-decoration-line: none;">index</a>
+        </button>
     </div>
 </body>
 </html>

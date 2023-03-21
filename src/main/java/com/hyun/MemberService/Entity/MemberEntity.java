@@ -25,6 +25,14 @@ public class MemberEntity { // 테이블을 정의한다.
 
     public static MemberEntity toMemberEntity(MemberDTO memberDto) { // MemberDto -> MemberEntity 변환
         MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setEmail(memberDto.getEmail());
+        memberEntity.setPassword(memberDto.getPassword());
+        memberEntity.setName(memberDto.getName());
+        return memberEntity;
+    }
+
+    public static MemberEntity toUpdateMemberEntity(MemberDTO memberDto) { // MemberDto -> MemberEntity 변환
+        MemberEntity memberEntity = new MemberEntity();
         memberEntity.setId(memberDto.getId());
         memberEntity.setEmail(memberDto.getEmail());
         memberEntity.setPassword(memberDto.getPassword());
