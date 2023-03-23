@@ -6,11 +6,11 @@
 </head>
 <body>
     <form action="/member/update" method="post">
-        <input type="text" th:value="${updateMember.email}" name="email" readonly placeholder="Update a email." onfocus="this.placeholder=''" onblur="this.placeholder='Update a email.'"> <br>
-        <input type="text" th:value="${updateMember.password}" name="password" placeholder="Update a password." onfocus="this.placeholder=''" onblur="this.placeholder='Update a password.'"> <br>
-        <input type="text" th:value="${updateMember.name}" name="name" placeholder="Update a name." onfocus="this.placeholder=''" onblur="this.placeholder='Update a name.'"> <br>
-        <input type="submit" value="update">
-        <input type="hidden" th:value="${updateMember.id}" name="id">
+        <input required type="text" th:value="${updateMember.email}" name="email" readonly placeholder="Update a email." onfocus="this.placeholder=''" onblur="this.placeholder='Update a email.'"> <br>
+        <input required type="text" th:value="${updateMember.password}" name="password" placeholder="Update a password." onfocus="this.placeholder=''" onblur="this.placeholder='Update a password.'"> <br>
+        <input required type="text" th:value="${updateMember.name}" name="name" placeholder="Update a name." onfocus="this.placeholder=''" onblur="this.placeholder='Update a name.'"> <br>
+        <input required type="submit" value="update">
+        <input required type="hidden" th:value="${updateMember.id}" name="id">
     </form>
 </body>
 </html>

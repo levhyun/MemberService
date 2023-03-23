@@ -1,15 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 </head>
 <body>
     <form action="/Register" method="post">
-        <input type="text" name="email" placeholder="Enter a email." onfocus="this.placeholder=''" onblur="this.placeholder='Enter a email.'"><br>
-        <input type="password" name="password" placeholder="Enter a password." onfocus="this.placeholder=''" onblur="this.placeholder='Enter a password.'"><br>
-        <input type="text" name="name" placeholder="Enter a name." onfocus="this.placeholder=''" onblur="this.placeholder='Enter a name.'"><br>
-        <input type="submit" value="Sign up">
+        <input required type="text" name="email" id="email" onkeyup="emailCheck()" placeholder="Enter a email." onfocus="this.placeholder=''" onblur="this.placeholder='Enter a email.'">
+        <span id="check-result" style="color: red;"></span><br>
+        <input required type="password" name="password" placeholder="Enter a password." onfocus="this.placeholder=''" onblur="this.placeholder='Enter a password.'"><br>
+        <input required type="text" name="name" placeholder="Enter a name." onfocus="this.placeholder=''" onblur="this.placeholder='Enter a name.'"><br>
+        <input required type="submit" value="Sign up">
     </form>
 </body>
+<script th:inline="javascript">
+    const emailCheck = () => {
+        const email = document.getElementById("email").value
+        const checkResult = document.getElementById("check-result");
+        console.log("input email :", email)
+        $.ajax({
+            type: "post",
+            url: "/member/email-check",
+            data: {
+                "email": email
+            },
+            success: function (res) {
+                console.log("[요청 성공]", res)
+                if (res == "ok") {
+                    console.log("사용 가능한 이메일입니다.")
+                    checkResult.innerHTML = "사용 가능한 이메일입니다."
+                } else {
+                    console.log("이미 사용 중인 이메일입니다.")
+                    checkResult.innerHTML = "이미 사용 중인 이메일입니다."
+                }
+            },
+            error: function (err) {
+                console.log("[에러 발생]", err)
+            }
+        })
+    }
+</script>
 </html>
