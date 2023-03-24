@@ -8,8 +8,8 @@
 </head>
 <body>
     <form action="/Register" method="post">
-        <input required type="text" name="email" id="email" onkeyup="emailCheck()" placeholder="Enter a email." onfocus="this.placeholder=''" onblur="this.placeholder='Enter a email.'">
-        <span id="check-result" style="color: red;"></span><br>
+        <input required type="text" name="email" id="email" th:onblur="emailCheck()" placeholder="Enter a email." onfocus="this.placeholder=''" onblur="this.placeholder='Enter a email.'">
+        <span id="check-result"></span><br>
         <input required type="password" name="password" placeholder="Enter a password." onfocus="this.placeholder=''" onblur="this.placeholder='Enter a password.'"><br>
         <input required type="text" name="name" placeholder="Enter a name." onfocus="this.placeholder=''" onblur="this.placeholder='Enter a name.'"><br>
         <input required type="submit" value="Sign up">
@@ -30,9 +30,11 @@
                 console.log("[요청 성공]", res)
                 if (res == "ok") {
                     console.log("사용 가능한 이메일입니다.")
+                    checkResult.style.color = "green"
                     checkResult.innerHTML = "사용 가능한 이메일입니다."
                 } else {
                     console.log("이미 사용 중인 이메일입니다.")
+                    checkResult.style.color = "red"
                     checkResult.innerHTML = "이미 사용 중인 이메일입니다."
                 }
             },
